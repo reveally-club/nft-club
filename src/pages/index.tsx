@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <Layout>
       <Headers />
-      <div className="mt-10">
+      <div className="mt-10 grid gap-4 grid-cols-4">
         {isLoading ? (
           <div />
         ) : (
