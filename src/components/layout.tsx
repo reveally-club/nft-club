@@ -2,8 +2,8 @@ const Layout: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   children,
 }) => {
   return (
-    <div className="bg-zinc-100 h-screen flex flex-row min-h-screen">
-      <div className="sidebar transform -translate-x-full md:translate-x-0 transition-transform duration-150 ease-in bg-white flex flex-col justify-center content-center">
+    <div className="bg-zinc-100 h-screen flex flex-row">
+      <div className="sidebar transform translate-x-full md:translate-x-0 transition-transform duration-150 ease-in bg-white flex flex-col justify-center content-center">
         <div className="lg:p-16">
           <h1 className="text-6xl font-bold">NFT.club</h1>
           <h2 className="text-transparent text-sm bg-clip-text bg-gradient-to-r from-sky-400 to-violet-400">
@@ -25,7 +25,7 @@ const Layout: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
           </div>
         </div>
       </div>
-      <main className="main-content flex flex-col flex-grow p-4 ml-4 container mx-auto">
+      <main className="main-content flex flex-col flex-grow p-4 ml-4 container mx-auto overflow-auto">
         {children}
       </main>
     </div>

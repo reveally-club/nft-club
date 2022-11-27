@@ -25,82 +25,106 @@ const NftCard = (props: NftProps) => {
             className="w-10 h-10 rounded-full"
             width={400}
             height={400}
-            src={props.profile}
+            src={
+              props.profile === undefined
+                ? "https://pbs.twimg.com/profile_images/1576113343458291712/5zJlWJTy_400x400.jpg"
+                : props.profile
+            }
             alt={props.name}
           />
           <div className="font-bold text-xl pl-4">{props.name}</div>
         </div>
         <div className="pt-4 pb-2">
-          <a
-            className="inline-flex cursor-pointer bg-gray-200 hover:bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-            href={props.twitter}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Image
-              className="w-6 h-6"
-              width={100}
-              height={100}
-              src={twtterLogo}
-              alt="twitter"
-            />
-          </a>
-          <a
-            className="inline-flex cursor-pointer bg-gray-200 hover:bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-            href={props.discord}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Image
-              className="w-6 h-6"
-              width={100}
-              height={100}
-              src={discordLogo}
-              alt="discord"
-            />
-          </a>
-          <a
-            className="inline-flex cursor-pointer bg-gray-200 hover:bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-            href={props.homepage}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Image
-              className="w-6 h-6"
-              width={100}
-              height={100}
-              src={homepageLogo}
-              alt="homepage"
-            />
-          </a>
-          <a
-            className="inline-flex cursor-pointer bg-gray-200 hover:bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-            href={`https://etherscan.io/address/${props.contract}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Image
-              className="w-6 h-6"
-              width={100}
-              height={100}
-              src={etherscanLogo}
-              alt="etherscan"
-            />
-          </a>
-          <a
-            className="inline-flex cursor-pointer bg-gray-200 hover:bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-            href={props.market}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Image
-              className="w-6 h-6"
-              width={100}
-              height={100}
-              src={openseaLogo}
-              alt="opensea"
-            />
-          </a>
+          {props.twitter === undefined ? (
+            <div />
+          ) : (
+            <a
+              className="inline-flex cursor-pointer bg-gray-200 hover:bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+              href={props.twitter}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Image
+                className="w-6 h-6"
+                width={100}
+                height={100}
+                src={twtterLogo}
+                alt="twitter"
+              />
+            </a>
+          )}
+          {props.discord === undefined ? (
+            <div />
+          ) : (
+            <a
+              className="inline-flex cursor-pointer bg-gray-200 hover:bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+              href={props.discord}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Image
+                className="w-6 h-6"
+                width={100}
+                height={100}
+                src={discordLogo}
+                alt="discord"
+              />
+            </a>
+          )}
+          {props.homepage === undefined ? (
+            <div />
+          ) : (
+            <a
+              className="inline-flex cursor-pointer bg-gray-200 hover:bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+              href={props.homepage}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Image
+                className="w-6 h-6"
+                width={100}
+                height={100}
+                src={homepageLogo}
+                alt="homepage"
+              />
+            </a>
+          )}
+          {props.contract === undefined ? (
+            <div />
+          ) : (
+            <a
+              className="inline-flex cursor-pointer bg-gray-200 hover:bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+              href={`https://etherscan.io/address/${props.contract}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Image
+                className="w-6 h-6"
+                width={100}
+                height={100}
+                src={etherscanLogo}
+                alt="etherscan"
+              />
+            </a>
+          )}
+          {props.market === undefined ? (
+            <div />
+          ) : (
+            <a
+              className="inline-flex cursor-pointer bg-gray-200 hover:bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+              href={props.market}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Image
+                className="w-6 h-6"
+                width={100}
+                height={100}
+                src={openseaLogo}
+                alt="opensea"
+              />
+            </a>
+          )}
         </div>
       </div>
     </div>
