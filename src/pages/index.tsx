@@ -1,32 +1,22 @@
-import { useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { MutableRefObject, useEffect, useRef } from "react";
 import Headers from "../components/headers";
 import Layout from "../components/layout";
 import NftCard, { NftProps } from "../components/nft-card";
 import Search from "../components/search";
 import { useNfts } from "../hooks/fetcher";
+import useIntersect from "../hooks/useInterest";
 
 export default function Home() {
   const { data, isLoading, setSize } = useNfts();
-  function handleScroll() {
-    if (
-      document.documentElement.scrollTop + window.innerHeight ===
-      document.documentElement.scrollHeight
-    ) {
-      setSize((size) => size + 1);
-    }
-  }
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const observationTarget = useIntersect(() => {
+    setSize((size) => size + 1);
+  });
 
   return (
     <Layout>
       <Headers />
-      <div className="mt-10 grid gap-4 grid-cols-4">
+      <div className="mt-10 grid gap-4 lg:grid-cols-4 grid-cols-1">
         {isLoading ? (
           <div />
         ) : (
@@ -45,6 +35,7 @@ export default function Home() {
           ))
         )}
       </div>
+      {!isLoading && <div ref={observationTarget} />}
     </Layout>
   );
 }

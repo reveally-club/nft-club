@@ -10,7 +10,7 @@ const useNfts = () => {
     previousPageData: { message: string; data: Array<NftProps> }
   ) => {
     if (pageIndex === 0) return `${process.env.NEXT_PUBLIC_BASE_URL}/nft?page=1`;
-    if (pageIndex + 1 > +previousPageData?.data.length) return null;
+    if (pageIndex + 1 > previousPageData?.data?.length) return null;
     return `${process.env.NEXT_PUBLIC_BASE_URL}/nft?page=${pageIndex + 1}`;
   };
 

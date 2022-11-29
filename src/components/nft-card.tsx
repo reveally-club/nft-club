@@ -1,7 +1,7 @@
 import Image from "next/image";
 import twtterLogo from "../../public/icons/twitter.svg";
 import discordLogo from "../../public/icons/discord.svg";
-import homepageLogo from "../../public/icons/homepage.svg";
+import homepageLogo from "../../public/icons/homepage.png";
 import etherscanLogo from "../../public/icons/etherscan.svg";
 import openseaLogo from "../../public/icons/opensea.svg";
 
@@ -18,23 +18,19 @@ export interface NftProps {
 
 const NftCard = (props: NftProps) => {
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-sm bg-white">
+    <div className="max-w-sm rounded overflow-hidden shadow-sm bg-white dark:bg-neutral-800 dark:text-neutral-50">
       <div className="px-6 py-4">
         <div className="flex flex-row items-center">
           <Image
             className="w-10 h-10 rounded-full"
             width={400}
             height={400}
-            src={
-              props.profile === undefined
-                ? "https://pbs.twimg.com/profile_images/1576113343458291712/5zJlWJTy_400x400.jpg"
-                : props.profile
-            }
+            src={`https://s3.ap-northeast-2.amazonaws.com/reveally.club/nfts/${props.name}.png`}
             alt={props.name}
           />
           <div className="font-bold text-xl pl-4">{props.name}</div>
         </div>
-        <div className="pt-4 pb-2">
+        <div className="flex pt-4 pb-2">
           {props.twitter === undefined ? (
             <div />
           ) : (
