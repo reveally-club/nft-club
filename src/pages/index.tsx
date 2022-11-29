@@ -5,12 +5,12 @@ import Layout from "../components/layout";
 import NftCard, { NftProps } from "../components/nft-card";
 import Search from "../components/search";
 import { useNfts } from "../hooks/fetcher";
-import useIntersect from "../hooks/useInterest";
+import useIntersectionObserver from "../hooks/useIntersectionObserver";
 
 export default function Home() {
-  const { data, isLoading, setSize } = useNfts();
-  const observationTarget = useIntersect(() => {
-    setSize((size) => size + 1);
+  const { data, isLoading, isValidating, setSize } = useNfts();
+  const observationTarget = useIntersectionObserver(() => {
+    !isValidating && setSize((size) => size + 1);
   });
 
   return (
