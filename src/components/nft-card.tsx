@@ -25,7 +25,7 @@ const NftCard = (props: NftProps) => {
             className="w-10 h-10 rounded-full"
             width={400}
             height={400}
-            src={`https://s3.ap-northeast-2.amazonaws.com/reveally.club/nfts/${props.name}.png`}
+            src={props.profile}
             alt={props.name}
           />
           <div className="font-bold text-xl pl-4">{props.name}</div>

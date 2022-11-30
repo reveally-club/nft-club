@@ -4,7 +4,7 @@ import Search from "./search";
 
 const Headers = () => {
   return (
-    <div className="">
+    <div className="sticky top-0 z-30 w-full">
       <Head>
         <title>NFT.Club with Reveally</title>
         <meta
