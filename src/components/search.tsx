@@ -1,3 +1,5 @@
+import { useRef, useState } from "react";
+
 const Search = () => {
   return (
     <form className="mb-4">
