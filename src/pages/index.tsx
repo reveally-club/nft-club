@@ -1,4 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import Head from "next/head";
 import { MutableRefObject, useEffect, useRef, useState } from "react";
 import Headers from "../components/headers";
 import Layout from "../components/layout";
@@ -24,36 +25,45 @@ export default function Home() {
   return (
     <Layout>
       {/* <Headers /> */}
-      <form className="mb-4">
-      <div className="relative">
-        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-          <svg
-            aria-hidden="true"
-            className="w-5 h-5 text-black"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            ></path>
-          </svg>
-        </div>
-        <input
-          type="search"
-          id="default-search"
-          className="block w-full p-4 pl-10 text-sm text-gray-900 rounded-lg bg-white focus:ring-black focus:border-black"
-          placeholder="Doodles, Azuki, Cool Cats, ..."
-          required
-          value={input}
-          onChange={handleInputChange}
-        />
-      </div>
-    </form>
+      <header>
+        <Head>
+          <title>NFT.Club with Reveally</title>
+          <meta
+            property="og:description"
+            content="All the NFT projects in one place"
+          />
+        </Head>
+        <form className="mb-4">
+          <div className="relative">
+            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+              <svg
+                aria-hidden="true"
+                className="w-5 h-5 text-black"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                ></path>
+              </svg>
+            </div>
+            <input
+              type="search"
+              id="default-search"
+              className="block w-full p-4 pl-10 text-sm text-gray-900 rounded-lg bg-white focus:ring-black focus:border-black"
+              placeholder="Doodles, Azuki, Cool Cats, ..."
+              required
+              value={input}
+              onChange={handleInputChange}
+            />
+          </div>
+        </form>
+      </header>
       <div className="mt-10 grid gap-4 lg:grid-cols-4 grid-cols-1">
         {isLoading ? (
           <div />
