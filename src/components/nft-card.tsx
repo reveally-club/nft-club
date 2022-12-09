@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { track } from "@amplitude/analytics-node";
 import twtterLogo from "../../public/icons/twitter.svg";
 import discordLogo from "../../public/icons/discord.svg";
 import homepageLogo from "../../public/icons/homepage.png";
@@ -15,6 +16,19 @@ export interface NftProps {
   contract?: string;
   market?: string;
 }
+
+const onClick = (
+  name: string,
+  url: string
+) => {
+  const eventProperties = {
+    projectName: name,
+    url: url,
+  };
+
+  track("Click Project Information", eventProperties);
+  window.open(url);
+};
 
 const NftCard = (props: NftProps) => {
   return (
@@ -36,9 +50,9 @@ const NftCard = (props: NftProps) => {
           ) : (
             <a
               className="inline-flex cursor-pointer bg-gray-200 hover:bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-              href={props.twitter}
-              target="_blank"
-              rel="noreferrer"
+              onClick={() => {
+                onClick(props.name, props.twitter!);
+              }}
             >
               <Image
                 className="w-6 h-6"
@@ -54,9 +68,9 @@ const NftCard = (props: NftProps) => {
           ) : (
             <a
               className="inline-flex cursor-pointer bg-gray-200 hover:bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-              href={props.discord}
-              target="_blank"
-              rel="noreferrer"
+              onClick={() => {
+                onClick(props.name, props.discord!);
+              }}
             >
               <Image
                 className="w-6 h-6"
@@ -72,9 +86,9 @@ const NftCard = (props: NftProps) => {
           ) : (
             <a
               className="inline-flex cursor-pointer bg-gray-200 hover:bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-              href={props.homepage}
-              target="_blank"
-              rel="noreferrer"
+              onClick={() => {
+                onClick(props.name, props.homepage!);
+              }}
             >
               <Image
                 className="w-6 h-6"
@@ -90,9 +104,9 @@ const NftCard = (props: NftProps) => {
           ) : (
             <a
               className="inline-flex cursor-pointer bg-gray-200 hover:bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-              href={`https://etherscan.io/address/${props.contract}`}
-              target="_blank"
-              rel="noreferrer"
+              onClick={() => {
+                onClick(props.name, `https://etherscan.io/address/${props.contract}`!);
+              }}
             >
               <Image
                 className="w-6 h-6"
@@ -108,9 +122,9 @@ const NftCard = (props: NftProps) => {
           ) : (
             <a
               className="inline-flex cursor-pointer bg-gray-200 hover:bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-              href={props.market}
-              target="_blank"
-              rel="noreferrer"
+              onClick={() => {
+                onClick(props.name, `https://etherscan.io/address/${props.market}`!);
+              }}
             >
               <Image
                 className="w-6 h-6"

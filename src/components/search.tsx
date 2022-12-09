@@ -1,8 +1,20 @@
 import { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setSearchText } from "../state/search";
 
 const Search = () => {
+  const dispatch = useDispatch();
+
+  const inputRef = useRef<string>("");
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    inputRef.current = e.target.value;
+    dispatch(setSearchText({ text: e.target.value }));
+  };
+
   return (
-    <form className="mb-4">
+    <div className="mb-4">
       <div className="relative">
         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
           <svg
@@ -21,15 +33,16 @@ const Search = () => {
             ></path>
           </svg>
         </div>
-        <input
-          type="search"
-          id="default-search"
-          className="block w-full p-4 pl-10 text-sm text-gray-900 rounded-lg bg-white focus:ring-black focus:border-black"
-          placeholder="Doodles, Azuki, Cool Cats, ..."
-          required
-        />
+          <input
+            type="search"
+            id="default-search"
+            className="block w-full p-4 pl-10 text-sm text-gray-900 rounded-lg bg-white focus:ring-black focus:border-black"
+            placeholder="Doodles, Azuki, Cool Cats, ..."
+            onChange={handleInputChange}
+            required
+          />
       </div>
-    </form>
+    </div>
   );
 };
 

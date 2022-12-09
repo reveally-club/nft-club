@@ -1,6 +1,13 @@
+import { track } from '@amplitude/analytics-node';
+
 const Layout: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   children,
 }) => {
+  const submitProject = () => {
+    track('Request to Add Project');
+    window.open("https://forms.gle/TGuYAoxFFC4vpFNo8")
+  }
+
   return (
     <div className="bg-zinc-100 dark:bg-zinc-900 h-screen flex flex-row">
       <div className="sidebar hidden lg:flex transform translate-x-full md:translate-x-0 transition-transform duration-150 ease-in bg-white dark:bg-neutral-800 flex-col justify-center content-center">
@@ -18,7 +25,7 @@ const Layout: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
            You can search various projects, be connected to all the projects you want to check with NFT.club
           </p>
           <div className="mt-8">
-            <button className="text-white dark:text-neutral-100 p-4 bg-gradient-to-r from-sky-400 to-violet-400 rounded-full hover:text-zinc-100 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none" onClick={() => {window.open("https://forms.gle/TGuYAoxFFC4vpFNo8")}}>
+            <button className="text-white dark:text-neutral-100 p-4 bg-gradient-to-r from-sky-400 to-violet-400 rounded-full hover:text-zinc-100 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none" onClick={submitProject}>
               Add Your NFT Project
             </button>
           </div>
