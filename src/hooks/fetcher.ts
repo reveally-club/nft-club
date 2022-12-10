@@ -16,7 +16,7 @@ const useNfts = (search: string) => {
   };
 
   const { data, error, isValidating, size, setSize } = useSWRInfinite(getKey, fetcher, {
-    revalidateAll: true,
+    revalidateAll: false,
   });
 
   const post = data ? data.map((item: NftProps) => item).flat() : [];

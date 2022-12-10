@@ -4,14 +4,17 @@ import Layout from "../components/layout";
 import NftCard, { NftProps } from "../components/nft-card";
 import { useNfts } from "../hooks/fetcher";
 import { useAppSelector } from "../state/hooks";
-import useIntersectionObserver from "../hooks/useIntersectionObserver";
 
 export default function Home() {
   const searchText = useAppSelector((state) => state.search.text)
   const { data, isLoading, isValidating, setSize } = useNfts(searchText);
-  const observationTarget = useIntersectionObserver(() => {
+
+  const loadMore = () => {
     !isValidating && setSize((size) => size + 1);
-  });
+  }
+  // const observationTarget = useIntersectionObserver(() => {
+  //   !isValidating && setSize((size) => size + 1);
+  // });
 
   return (
     <Layout>
@@ -35,7 +38,7 @@ export default function Home() {
           ))
         )}
       </div>
-      {!isLoading && <div ref={observationTarget} />}
+      <button onClick={loadMore}>LoadMore</button>
     </Layout>
   );
 }

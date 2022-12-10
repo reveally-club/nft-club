@@ -1,4 +1,4 @@
-import { track } from '@amplitude/analytics-node';
+import { track } from '@amplitude/analytics-browser';
 
 const Layout: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
   children,

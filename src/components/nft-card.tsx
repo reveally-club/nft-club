@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { track } from "@amplitude/analytics-node";
+import { track } from '@amplitude/analytics-browser';
 import twtterLogo from "../../public/icons/twitter.svg";
 import discordLogo from "../../public/icons/discord.svg";
 import homepageLogo from "../../public/icons/homepage.png";
