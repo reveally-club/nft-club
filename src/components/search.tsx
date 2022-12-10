@@ -1,5 +1,6 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useDispatch } from "react-redux";
+import { track } from "@amplitude/analytics-node";
 import { setSearchText } from "../state/search";
 
 const Search = () => {
@@ -8,9 +9,13 @@ const Search = () => {
   const inputRef = useRef<string>("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault();
     inputRef.current = e.target.value;
     dispatch(setSearchText({ text: e.target.value }));
+    const eventProperties = {
+      SearchTerm: e.target.value,
+    };
+  
+    track("Search Project", eventProperties);
   };
 
   return (
