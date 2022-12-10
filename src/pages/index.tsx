@@ -38,7 +38,9 @@ export default function Home() {
           ))
         )}
       </div>
-      <button onClick={loadMore}>LoadMore</button>
+      <button className="text-white dark:text-neutral-100 p-4 bg-gradient-to-r from-sky-400 to-violet-400 rounded hover:text-zinc-100 active:shadow-lg mouse shadow transition ease-in duration-200 focus:outline-none" onClick={loadMore}>
+              Load More
+            </button>
     </Layout>
   );
 }
