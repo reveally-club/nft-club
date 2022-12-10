@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { track } from "@amplitude/analytics-node";
+import { track } from "@amplitude/analytics-browser";
 import { setSearchText } from "../state/search";
 
 const Search = () => {
