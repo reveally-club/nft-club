@@ -2,7 +2,7 @@ import axios from "axios";
 import useSWRInfinite from "swr/infinite";
 import { NftProps } from "../components/nft-card";
 
-const fetcher = (url: string) => axios.get(url).then((res) => res.data.data);
+const fetcher = (url: string) => axios.get(url).then((res) => res.data);
 
 const useNfts = (search: string) => {
   const getKey = (pageIndex: number, previousPageData: NftProps[]) => {
