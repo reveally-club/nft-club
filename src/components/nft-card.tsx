@@ -1,10 +1,11 @@
 import Image from "next/image";
-import { track } from '@amplitude/analytics-browser';
+import { Identify, track } from '@amplitude/analytics-browser';
 import twtterLogo from "../../public/icons/twitter.svg";
 import discordLogo from "../../public/icons/discord.svg";
 import homepageLogo from "../../public/icons/homepage.png";
 import etherscanLogo from "../../public/icons/etherscan.svg";
 import openseaLogo from "../../public/icons/opensea.svg";
+import { useState } from "react";
 
 export interface NftProps {
   _id: string;
@@ -17,21 +18,26 @@ export interface NftProps {
   market?: string;
 }
 
-const onClick = (
-  name: string,
-  url: string,
-  channel: string,
-) => {
-  const eventProperties = {
-    projectName: name,
-    projectChannel: channel,
+const NftCard = (props: NftProps) => {
+  const [projectCount, setProjectCount] = useState(0);
+
+  const onClick = (
+    name: string,
+    url: string,
+    channel: string,
+  ) => {
+    const eventProperties = {
+      projectName: name,
+      projectChannel: channel,
+    };
+    
+    setProjectCount(projectCount + 1);
+    new Identify().set(`${name} Click Count`, projectCount);
+  
+    track("Click Project Information", eventProperties);
+    window.open(url);
   };
 
-  track("Click Project Information", eventProperties);
-  window.open(url);
-};
-
-const NftCard = (props: NftProps) => {
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-sm bg-white dark:bg-neutral-800 dark:text-neutral-50">
       <div className="px-6 py-4">
