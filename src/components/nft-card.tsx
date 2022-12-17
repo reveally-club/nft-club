@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Identify, track } from '@amplitude/analytics-browser';
+import { Identify, track } from "@amplitude/analytics-browser";
 import twtterLogo from "../../public/icons/twitter.svg";
 import discordLogo from "../../public/icons/discord.svg";
 import homepageLogo from "../../public/icons/homepage.png";
@@ -8,9 +8,9 @@ import openseaLogo from "../../public/icons/opensea.svg";
 import { useState } from "react";
 
 export interface NftProps {
-  _id: string;
+  id: string;
   profile: string;
-  name: string;
+  e_name: string;
   twitter?: string;
   discord?: string;
   homepage?: string;
@@ -21,19 +21,15 @@ export interface NftProps {
 const NftCard = (props: NftProps) => {
   const [projectCount, setProjectCount] = useState(0);
 
-  const onClick = (
-    name: string,
-    url: string,
-    channel: string,
-  ) => {
+  const onClick = (name: string, url: string, channel: string) => {
     const eventProperties = {
       projectName: name,
       projectChannel: channel,
     };
-    
+
     setProjectCount(projectCount + 1);
     new Identify().set(`${name} Click Count`, projectCount);
-  
+
     track("Click Project Information", eventProperties);
     window.open(url);
   };
@@ -47,9 +43,9 @@ const NftCard = (props: NftProps) => {
             width={400}
             height={400}
             src={props.profile}
-            alt={props.name}
+            alt={props.e_name}
           />
-          <div className="font-bold text-xl pl-4">{props.name}</div>
+          <div className="font-bold text-xl pl-4">{props.e_name}</div>
         </div>
         <div className="flex pt-4 pb-2">
           {props.twitter === undefined ? (
@@ -58,7 +54,7 @@ const NftCard = (props: NftProps) => {
             <a
               className="inline-flex cursor-pointer bg-gray-200 hover:bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
               onClick={() => {
-                onClick(props.name, props.twitter!, "twitter");
+                onClick(props.e_name, props.twitter!, "twitter");
               }}
             >
               <Image
@@ -76,7 +72,7 @@ const NftCard = (props: NftProps) => {
             <a
               className="inline-flex cursor-pointer bg-gray-200 hover:bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
               onClick={() => {
-                onClick(props.name, props.discord!, "discord");
+                onClick(props.e_name, props.discord!, "discord");
               }}
             >
               <Image
@@ -94,7 +90,7 @@ const NftCard = (props: NftProps) => {
             <a
               className="inline-flex cursor-pointer bg-gray-200 hover:bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
               onClick={() => {
-                onClick(props.name, props.homepage!, "homepage");
+                onClick(props.e_name, props.homepage!, "homepage");
               }}
             >
               <Image
@@ -112,7 +108,11 @@ const NftCard = (props: NftProps) => {
             <a
               className="inline-flex cursor-pointer bg-gray-200 hover:bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
               onClick={() => {
-                onClick(props.name, `https://etherscan.io/address/${props.contract}`!, "contract");
+                onClick(
+                  props.e_name,
+                  `https://etherscan.io/address/${props.contract}`!,
+                  "contract"
+                );
               }}
             >
               <Image
@@ -130,7 +130,11 @@ const NftCard = (props: NftProps) => {
             <a
               className="inline-flex cursor-pointer bg-gray-200 hover:bg-gray-300 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
               onClick={() => {
-                onClick(props.name, `https://etherscan.io/address/${props.market}`!, "market");
+                onClick(
+                  props.e_name,
+                  `https://etherscan.io/address/${props.market}`!,
+                  "market"
+                );
               }}
             >
               <Image

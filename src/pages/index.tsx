@@ -23,10 +23,10 @@ export default function Home() {
         ) : (
           data.map((data: NftProps) => (
             <NftCard
-              key={data._id}
-              _id={data._id}
+              key={data.id}
+              id={data.id}
               profile={data.profile}
-              name={data.name}
+              e_name={data.e_name}
               twitter={data.twitter}
               discord={data.discord}
               homepage={data.homepage}
