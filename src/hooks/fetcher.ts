@@ -4,9 +4,17 @@ import { NftProps } from "../components/nft-card";
 
 const fetcher = (url: string) => axios.get(url).then((res) => res.data.data);
 
+export interface NftCountInfoDto<T> {
+  total: number;
+  data: T[];
+}
+
 const useNfts = (search: string) => {
-  const getKey = (pageIndex: number, previousPageData: NftProps[]) => {
-    if (previousPageData && !previousPageData.length) return null;
+  const getKey = (
+    pageIndex: number,
+    previousPageData: NftCountInfoDto<NftProps>
+  ) => {
+    if (previousPageData && !previousPageData.data.length) return null;
     return `${process.env.NEXT_PUBLIC_BASE_URL}/nft/search?take=50&page=${
       pageIndex + 1
     }&search=${search}`;
@@ -21,7 +29,9 @@ const useNfts = (search: string) => {
     }
   );
 
-  const post = data ? data.map((item: NftProps) => item).flat() : [];
+  const post = data
+    ? data.map((item: NftCountInfoDto<NftProps>) => item.data).flat()
+    : [];
 
   return {
     data: post,
